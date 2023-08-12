@@ -32,6 +32,20 @@
           "name": "entity.name.method.micufunction"
         },
         {
+          "name": "meta.command.micufunction",
+          "begin": "^\\s*command\\s*(.*)",
+          "beginCaptures": {
+            "1": {
+              "name": "source.mcfunction"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.mcfunction"
+            }
+          ]
+        },
+        {
           "match": "\\{[^}]*\\}",
           "name": "meta.block.micufunction"
         },
