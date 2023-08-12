@@ -1,0 +1,25 @@
+{
+    "name": "language-micufunction",
+    "version": "0.0.1",
+    "displayName": "Micufunction Language",
+    "description": "Syntax highlighting for micufunction scripting language",
+    "author": "April",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "contributes": {
+        "languages": [
+          {
+            "id": "micufunction",
+            "extensions": [".micufunction"]
+          }
+        ],
+        "grammars": [
+          {
+            "language": "micufunction",
+            "scopeName": "source.micufunction",
+            "path": "./syntaxes/micufunction.tmLanguage.json"
+          }
+        ]
+      }
+}

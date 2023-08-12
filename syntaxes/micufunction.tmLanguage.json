@@ -1,0 +1,61 @@
+{
+  "scopeName": "source.micufunction",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#commands"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "#.*",
+          "name": "comment.line.micufunction"
+        }
+      ]
+    },
+    "commands": {
+      "patterns": [
+        {
+          "match": "\\b(function|duration|if|else)\\b",
+          "name": "keyword.control.micufunction"
+        },
+        {
+          "match": "\\b(wait|command|say|camera)\\b",
+          "name": "entity.name.function.micufunction"
+        },
+        {
+          "match": "(?<=function\\s)[\\w/:]+(?=\\s*{)",
+          "name": "entity.name.method.micufunction"
+        },
+        {
+          "match": "\\{[^}]*\\}",
+          "name": "meta.block.micufunction"
+        },
+        {
+          "match": "(?<=say\\s)<[^>]+>",
+          "name": "entity.name.tag.micufunction"
+        },
+        {
+          "match": "\\b(\\d+[st])\\b",
+          "name": "constant.numeric.time.micufunction"
+        },
+        {
+          "match": "(?<=goto\\s)\\S+(?=\\s+\\S+\\s+\\S+)",
+          "name": "support.function.position.micufunction"
+        },
+        {
+          "match": "\\b\\d+\\.\\d+\\b",
+          "name": "constant.numeric.float.micufunction"
+        },
+        {
+          "match": "\\b\\d+\\b",
+          "name": "constant.numeric.integer.micufunction"
+        }
+      ]
+    }
+  }
+}
