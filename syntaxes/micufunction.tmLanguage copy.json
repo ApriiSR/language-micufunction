@@ -43,13 +43,7 @@
             {
               "include": "source.mcfunction"
             }
-          ],
-          "end": ";",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.terminator.mcfunction"
-            }
-          }
+          ]
         },
         {
           "match": "\\{[^}]*\\}",
