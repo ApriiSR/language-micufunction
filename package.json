@@ -4,6 +4,9 @@
     "displayName": "Micufunction Language",
     "description": "Syntax highlighting for micufunction scripting language",
     "author": "April",
+    "repository": {
+      "url": "https://github.com/AprilKopec/language-micufunction"
+    },
     "engines": {
         "vscode": "^1.60.0"
     },
