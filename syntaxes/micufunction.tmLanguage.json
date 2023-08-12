@@ -6,6 +6,9 @@
     },
     {
       "include": "#commands"
+    },
+    {
+      "include": "source.mcfunction"
     }
   ],
   "repository": {
@@ -24,24 +27,21 @@
           "name": "keyword.control.micufunction"
         },
         {
-          "match": "\\b(wait|command|say|camera)\\b",
-          "name": "entity.name.function.micufunction"
+          "match": "\\b(wait|say|camera)\\b",
+          "name": "keyword.other.micufunction"
         },
         {
-          "match": "(?<=function\\s)[\\w/:]+(?=\\s*{)",
-          "name": "entity.name.method.micufunction"
-        },
-        {
-          "name": "meta.command.micufunction",
-          "begin": "^\\s*command\\s*(.*)",
-          "beginCaptures": {
-            "1": {
-              "name": "source.mcfunction"
+          "begin": "\\bcommand\\b",
+          "end": "$",
+          "captures": {
+            "0": {
+              "name": "entity.name.function.micufunction"
             }
           },
           "patterns": [
             {
-              "include": "source.mcfunction"
+              "match": ".*",
+              "name": "source.mcfunction"
             }
           ]
         },
