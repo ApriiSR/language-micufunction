@@ -33,23 +33,17 @@
         },
         {
           "name": "meta.command.micufunction",
-          "begin": "^\\s*command\\s*(.*)",
+          "begin": "^\\s*(command)\\s.*",
           "beginCaptures": {
             "1": {
-              "name": "source.mcfunction"
+              "name": "keyword.control.mcfunction"
             }
           },
           "patterns": [
             {
               "include": "source.mcfunction"
             }
-          ],
-          "end": ";",
-          "endCaptures": {
-            "0": {
-              "name": "punctuation.terminator.mcfunction"
-            }
-          }
+          ]
         },
         {
           "match": "\\{[^}]*\\}",
