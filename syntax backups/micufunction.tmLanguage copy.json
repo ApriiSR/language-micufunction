@@ -33,7 +33,7 @@
         },
         {
           "name": "meta.command.micufunction",
-          "begin": "^\\s*command\\s*(.*)",
+          "begin": "^\\s*command\\s",
           "beginCaptures": {
             "1": {
               "name": "source.mcfunction"
