@@ -1,6 +1,6 @@
 {
     "name": "language-micufunction",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "displayName": "Micufunction Language",
     "description": "Syntax highlighting for micufunction scripting language",
     "author": "April",
