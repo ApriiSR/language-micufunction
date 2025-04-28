@@ -33,13 +33,18 @@
           "begin": "^\\s*(command)\\s+",
           "beginCaptures": {
             "1": {
-              "name": "entity.name.function.micufunction"
+              "name": "keyword.other.command.micufunction"
             }
           },
           "end": "$",
           "patterns": [
             {
-              "include": "source.mcfunction"
+              "begin": "(?<=\\bcommand\\s)",
+              "end": "$",
+              "contentName": "source.mcfunction",
+              "patterns": [
+                { "include": "source.mcfunction" }
+              ]
             }
           ]
         },
