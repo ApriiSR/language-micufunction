@@ -1,15 +1,9 @@
 {
   "scopeName": "source.micufunction",
-  "fileTypes": [
-    "micufunction"
-  ],
+  "fileTypes": ["micufunction"],
   "patterns": [
-    {
-      "include": "#comments"
-    },
-    {
-      "include": "#commands"
-    }
+    { "include": "#comments" },
+    { "include": "#commands" }
   ],
   "repository": {
     "comments": {
@@ -23,39 +17,29 @@
     "commands": {
       "patterns": [
         {
-          "match": "\\b(function|duration|else)\\b",
+          "match": "\\b(duration|else|if|unless)\\b",
           "name": "keyword.control.micufunction"
         },
         {
-          "match": "\\b(wait|command|say)\\b",
+          "match": "\\b(wait|say|camera)\\b",
           "name": "entity.name.function.micufunction"
         },
         {
-          "match": "(?<=function\\s)[\\w/:]+(?=\\s*{)",
-          "name": "entity.name.method.micufunction"
+          "match": "\\bfunction\\b",
+          "name": "keyword.other.micufunction"
         },
         {
           "name": "meta.command.micufunction",
-          "begin": "^\\s*(command) ([a-z]*)",
+          "begin": "^\\s*(command)\\s+",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.micufunction"
-            },
-            "2": {
-              "name": "keyword.control.micufunction"
             }
           },
           "end": "$",
           "patterns": [
             {
-              "begin": "(?<= )",
-              "end": "[ \\n]",
-              "contentName": "meta.command.token.micufunction",
-              "patterns": [
-                {
-                  "include": "source.mcfunction#command.tokens"
-                }
-              ]
+              "include": "source.mcfunction"
             }
           ]
         },
@@ -67,16 +51,14 @@
               "name": "keyword.control.micufunction"
             }
           },
-          "end": "(?=(if|unless|\\{))",
+          "end": "(?=\\{|$)",
           "patterns": [
-            {
-              "include": "#execute_if_subcommands"
-            }
+            { "include": "#execute_if_subcommands" }
           ]
         },
         {
           "name": "meta.camera.micufunction",
-          "begin": "\\b(camera)\\b",
+          "begin": "\\bcamera\\b",
           "beginCaptures": {
             "1": {
               "name": "entity.name.function.micufunction"
@@ -85,36 +67,16 @@
           "end": "$",
           "patterns": [
             {
-              "match": " (setup|enable|pause|kill|)",
+              "match": "\\b(setup|enable|pause|kill)\\b",
               "name": "keyword.control.micufunction"
             },
             {
-              "match": " ((summon at|goto|slide to)) ([\\d\\.]+ [\\d\\.]+ [\\d\\.]+)",
-              "captures": {
-                "1": {
-                  "name": "keyword.control.micufunction"
-                },
-                "2": {
-                  "name": "constant.numeric.micufunction"
-                }
-              }
+              "match": "\\b(summon at|goto|slide to)\\b",
+              "name": "keyword.control.micufunction"
             },
             {
-              "match": "\\b(summon at|goto)\\s([\\d\\.]+ [\\d\\.]+ [\\d\\.]+)\\s(facing)\\s([\\d\\.]+ [\\d\\.]+ [\\d\\.]+)\\b",
-              "captures": {
-                "1": {
-                  "name": "keyword.control.micufunction"
-                },
-                "2": {
-                  "name": "constant.numeric.micufunction"
-                },
-                "3": {
-                  "name": "keyword.control.micufunction"
-                },
-                "4": {
-                  "name": "constant.numeric.micufunction"
-                }
-              }
+              "match": "([\\d\\.]+ [\\d\\.]+ [\\d\\.]+)",
+              "name": "constant.numeric.micufunction"
             }
           ]
         },
@@ -129,10 +91,6 @@
         {
           "match": "\\b(\\d+[st])\\b",
           "name": "constant.numeric.time.micufunction"
-        },
-        {
-          "match": "(?<=goto\\s)\\S+(?=\\s+\\S+\\s+\\S+)",
-          "name": "support.function.position.micufunction"
         },
         {
           "match": "\\b\\d+\\.\\d+\\b",
@@ -150,26 +108,13 @@
           "name": "execute.if.biome.micufunction",
           "begin": "\\b(biome)\\b",
           "beginCaptures": {
-            "1": {
-              "name": "entity.name.micufunction"
-            }
+            "1": { "name": "entity.name.micufunction" }
           },
-          "end": "(?=(if|unless|\\{))",
+          "end": "(?=\\{|$)",
           "patterns": [
             {
-              "begin": "\\s(\\d+\\s\\d+\\s\\d+)\\s",
-              "beginCaptures": {
-                "1": {
-                  "name": "constant.numeric.micufunction"
-                }
-              },
-              "end": "(?=(if|unless|\\{))",
-              "patterns": [
-                {
-                  "match": "\\b[a-z_:]+\\b",
-                  "name": "entity.name.function.micufunction"
-                }
-              ]
+              "match": "\\b[a-z_:]+\\b",
+              "name": "entity.name.function.micufunction"
             }
           ]
         },
@@ -177,14 +122,13 @@
           "name": "execute.if.entity.micufunction",
           "begin": "\\b(entity)\\b",
           "beginCaptures": {
-            "1": {
-              "name": "entity.name.micufunction"
-            }
+            "1": { "name": "entity.name.micufunction" }
           },
-          "end": "(?=(if|unless|\\{))",
+          "end": "(?=\\{|$)",
           "patterns": [
             {
-              "include": "#target_selector"
+              "match": "@[a-z]+",
+              "name": "support.class.mcfunction"
             }
           ]
         },
@@ -192,41 +136,14 @@
           "name": "execute.if.score.matches.micufunction",
           "begin": "\\b(score)\\b",
           "beginCaptures": {
-            "1": {
-              "name": "entity.name.micufunction"
-            }
+            "1": { "name": "entity.name.micufunction" }
           },
-          "end": "\\b([\\w_\\.]+) (matches) ([\\d\\.]+) (?=(if|unless|\\{))",
+          "end": "\\b(\\w+) (matches) ([\\d\\.]+)(?=\\{|$)",
           "endCaptures": {
-            "1": {
-              "name": "string.unquoted.micufunction"
-            },
-            "2": {
-              "name": "entity.name.micufunction"
-            },
-            "3": {
-              "name": "constant.numeric.micufunction"
-            }
-          },
-          "patterns": [
-            {
-              "include": "#target_selector"
-            }
-          ]
-        }
-      ]
-    },
-    "target_selector": {
-      "patterns": [
-        {
-          "name": "entity.name.tag.micufunction",
-          "match": "(?<=(entity|score|[<>]=?|=) )[\\w_#-]+ "
-        },
-        {
-          "include": "source.mcfunction#command.token.selector_with_arguments"
-        },
-        {
-          "include": "source.mcfunction#command.token.selector_without_arguments"
+            "1": { "name": "string.unquoted.micufunction" },
+            "2": { "name": "entity.name.micufunction" },
+            "3": { "name": "constant.numeric.micufunction" }
+          }
         }
       ]
     }

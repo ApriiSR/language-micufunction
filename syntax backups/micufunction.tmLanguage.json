@@ -27,7 +27,7 @@
           "name": "keyword.control.micufunction"
         },
         {
-          "match": "\\b(wait|command|say|camera)\\b",
+          "match": "\\b(wait|command|say)\\b",
           "name": "entity.name.function.micufunction"
         },
         {
@@ -71,6 +71,50 @@
           "patterns": [
             {
               "include": "#execute_if_subcommands"
+            }
+          ]
+        },
+        {
+          "name": "meta.camera.micufunction",
+          "begin": "\\b(camera)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.function.micufunction"
+            }
+          },
+          "end": "$",
+          "patterns": [
+            {
+              "match": " (setup|enable|pause|kill|)",
+              "name": "keyword.control.micufunction"
+            },
+            {
+              "match": " ((summon at|goto|slide to)) ([\\d\\.]+ [\\d\\.]+ [\\d\\.]+)",
+              "captures": {
+                "1": {
+                  "name": "keyword.control.micufunction"
+                },
+                "2": {
+                  "name": "constant.numeric.micufunction"
+                }
+              }
+            },
+            {
+              "match": "\\b(summon at|goto)\\s([\\d\\.]+ [\\d\\.]+ [\\d\\.]+)\\s(facing)\\s([\\d\\.]+ [\\d\\.]+ [\\d\\.]+)\\b",
+              "captures": {
+                "1": {
+                  "name": "keyword.control.micufunction"
+                },
+                "2": {
+                  "name": "constant.numeric.micufunction"
+                },
+                "3": {
+                  "name": "keyword.control.micufunction"
+                },
+                "4": {
+                  "name": "constant.numeric.micufunction"
+                }
+              }
             }
           ]
         },
@@ -152,7 +196,7 @@
               "name": "entity.name.micufunction"
             }
           },
-          "end": "([\\w_\\.]+) (matches) ([\\d\\.]+) (?=(if|unless|\\{))",
+          "end": "\\b([\\w_\\.]+) (matches) ([\\d\\.]+) (?=(if|unless|\\{))",
           "endCaptures": {
             "1": {
               "name": "string.unquoted.micufunction"
@@ -176,7 +220,7 @@
       "patterns": [
         {
           "name": "entity.name.tag.micufunction",
-          "match": "\\s[\\w_#-]+\\s"
+          "match": "(?<=(entity|score|[<>]=?|=) )[\\w_#-]+ "
         },
         {
           "include": "source.mcfunction#command.token.selector_with_arguments"
